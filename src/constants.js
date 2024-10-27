@@ -1,3 +1,3 @@
 //constants.js
 
-export const DB_NAME= "myoutube"
+export const DB_NAME= "Myoutube"
