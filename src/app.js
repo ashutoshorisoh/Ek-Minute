@@ -14,4 +14,15 @@ app.use(express.urlencoded({extended: true})) //encodes url and ignores %20 kind
 app.use(express.static("public")) //to store images on folder (public folder)
 app.use(cookieParser) //to do crud operations on users cookie on browser
 
+//routes
+
+import userRouter from './routes/user.routes.js'
+  
+//routes declaration
+
+//app.use("/users", userRouter)
+
+//professinal way:
+app.use("/api/v1/users", userRouter)
+
 export { app }
