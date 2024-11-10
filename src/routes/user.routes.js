@@ -1,7 +1,14 @@
-import { Router } from "express";
-import {registerUser} from "../controller/user.controller.js"
+// src/routes/user.routes.js
+import express from "express";
+const router = express.Router();
+import {registerUser} from "../controllers/user.controller.js";
 
-const userRouter = Router();
-userRouter.route("/register").post(registerUser)
+// Register user route
+router.get("/register", registerUser); // POST request for user registration
 
-export default userRouter;
+// Example route (optional)
+router.get("/", (req, res) => {
+    res.send("User route is working!");
+});
+
+export default router;

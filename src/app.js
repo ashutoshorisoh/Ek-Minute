@@ -1,28 +1,23 @@
-import express from "express"
-import cors from "cors"
-import cookieParser from "cookie-parser"
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-const app = express()
+const app = express();
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true 
-}))
+}));
 
-app.use(express.json({limit: "16kb"})) //accept files in json format
-app.use(express.urlencoded({extended: true})) //encodes url and ignores %20 kinda stuff
-app.use(express.static("public")) //to store images on folder (public folder)
-app.use(cookieParser) //to do crud operations on users cookie on browser
+app.use(express.json({ limit: "16kb" })); // Parse JSON payloads up to 16kb in size
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
+app.use(express.static("public")); // Serve static files from the "public" folder
+app.use(cookieParser()); // Use cookie-parser for handling cookies
 
-//routes
+// Import routes
+import userRouter from './routes/user.routes.js';
 
-import userRouter from './routes/user.routes.js'
-  
-//routes declaration
+// Route declarations
+app.use("/api/v1/users", userRouter); // Mount user routes at /api/v1/users
 
-//app.use("/users", userRouter)
-
-//professinal way:
-app.use("/api/v1/users", userRouter)
-
-export { app }
+export { app };
