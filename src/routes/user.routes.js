@@ -1,14 +1,24 @@
 // src/routes/user.routes.js
 import express from "express";
+import { registerUser } from "../controllers/user.controller.js";
+import { upload } from "../middlewares/multer.middleware.js";
+
 const router = express.Router();
-import {registerUser} from "../controllers/user.controller.js";
 
-// Register user route
-router.post("/register", registerUser); // POST request for user registration
-
-// Example route (optional)
-router.get("/", (req, res) => {
-    res.send("User route is working!");
-});
+// Register user route with multer file upload middleware
+router.post(
+  "/register",  // Define the route path directly in .post()
+  upload.fields([  // Use multer middleware to handle file uploads
+    {
+      name: "avatar",
+      maxCount: 1
+    },
+    {
+      name: "coverimage",
+      maxCount: 1
+    }
+  ]),
+  registerUser  // Call the registerUser controller after file uploads are processed
+);
 
 export default router;
