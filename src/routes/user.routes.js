@@ -4,7 +4,7 @@ const router = express.Router();
 import {registerUser} from "../controllers/user.controller.js";
 
 // Register user route
-router.get("/register", registerUser); // POST request for user registration
+router.post("/register", registerUser); // POST request for user registration
 
 // Example route (optional)
 router.get("/", (req, res) => {
