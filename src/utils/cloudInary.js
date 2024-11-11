@@ -18,7 +18,9 @@ const uploadOnCloudinary= async(localFilePath)=>{
             resource_type: "auto"
         }) // keep the uploaded file in response, which will be uploaded when return function comes
         console.log("file uploaded on cloudinary", response.url) //url of file in console log just for developer perspective
+        fs.unlinkSync(localFilePath)
         return response; //file uploaded
+        
     } catch(error){
         fs.unlinkSync(localFilePath) //incase of upload failed or half uplaoded, it will be removed from local sever
         return null;
